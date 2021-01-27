@@ -9,12 +9,10 @@ namespace AdCodingUnitTest
     public class CommonstringTest
     {
         private String s1;
-        private String s2;
-        private List<String> sList;
+        private String s2;        
         private String overlap;
         private String result;
-        private String expected;
-        private List<String> expectedList;
+        private String expected;        
 
 
         /*
@@ -28,7 +26,7 @@ namespace AdCodingUnitTest
             s2 = "cdef";
             expected = "cd";
             result = CommonString.FindLongestSubstring(s1, s2);
-            Assert.Equals(expected, result);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -46,11 +44,19 @@ namespace AdCodingUnitTest
         {
             s1 = "abcd";
             s2 = "cdeab";
-            expectedList.Clear();
-            expectedList.Add("ab");
-            expectedList.Add("cd");
+            List<String> expectedList = new List<string>() { "ab","cd"};
             result = CommonString.FindLongestSubstring(s1, s2);            
             Assert.IsNotNull(expectedList.Find(expect => expect == result));
+        }
+
+        [TestMethod]
+        public void ShouldReturnSubstring_WhenOneStringsHasTwoOverlap()
+        {
+            s1 = "abcdab";
+            s2 = "cdeab";
+            expected = "ab";
+            result = CommonString.FindLongestSubstring(s1, s2);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -60,9 +66,9 @@ namespace AdCodingUnitTest
             s2 = "bc";
             expected = "bc";
             result = CommonString.FindLongestSubstring(s1, s2);
-            Assert.Equals(expected, result);
+            Assert.AreEqual(expected, result);
             result = CommonString.FindLongestSubstring(s2, s1);
-            Assert.Equals(expected, result);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -88,7 +94,7 @@ namespace AdCodingUnitTest
             overlap = "cd";
             expected = "abcdef";
             result = CommonString.ConcatTwoString(s1, s2, overlap);
-            Assert.Equals(expected, result);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -97,9 +103,7 @@ namespace AdCodingUnitTest
             s1 = "abcd";
             s2 = "efgh";
             overlap = null;
-            expectedList.Clear();
-            expectedList.Add("abcdefgh");
-            expectedList.Add("efghabcd");
+            List<String> expectedList = new List<string>() { "abcdefgh", "efghabcd" };
             result = CommonString.ConcatTwoString(s1, s2, overlap);
             Assert.IsNotNull(expectedList.Find(expect => expect == result));
         }
@@ -112,9 +116,31 @@ namespace AdCodingUnitTest
             overlap = s2;
             expected = "abcd";
             result = CommonString.ConcatTwoString(s1, s2, overlap);
-            Assert.Equals(expected, result);
+            Assert.AreEqual(expected, result);
             result = CommonString.ConcatTwoString(s2, s1, overlap);
-            Assert.Equals(expected, result);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void ShouldConcatByFirstOverlap_WhenOneStringsHasTwoOverlap()
+        {
+            s1 = "abcdgcd";
+            s2 = "cdef";
+            overlap = "cd";
+            expected = "abcdef";
+            result = CommonString.ConcatTwoString(s1, s2, overlap);
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod]
+        public void ShouldReturnShortString_WhenTwoStringsHasPrefixSuffix()
+        {
+            s1 = "abcdefg";
+            s2 = "xcdy";
+            overlap = "cd";
+            expected = "xcdy";
+            result = CommonString.ConcatTwoString(s1, s2, overlap);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
@@ -137,37 +163,29 @@ namespace AdCodingUnitTest
         [TestMethod]
         public void ShouldReturnCommonstring_WhenStringListHasOverlap()
         {
-            sList.Clear();
-            sList.Add("abc");
-            sList.Add("bcd");
-            sList.Add("cde");                        
+            List<String> sList = new List<string> { "abc", "bcd", "cde"};
             expected = "abcde";
             result = CommonString.FindCommonString(sList);
-            Assert.Equals(expected, result);
+            Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
-        public void ShouldReturnCommonString_WhenStringListHasNoOverlap()
+        public void ShouldReturnCommonStringInParamOder_WhenStringListHasNoOverlap()
         {
-            sList.Clear();
-            sList.Add("abc");
-            sList.Add("def");
-            sList.Add("ghi");
-
-            expectedList.Clear();
-            //for(int i=0; i < 3; i++)
-            //{
-            //    expectedList.Add(sList[i]+sList[(i+1)%3] + sList[(i + 2) % 3]);
-            //    expectedList.Add(sList[i] + sList[(i + 2) % 3] + sList[(i + 1) % 3]);
-            //}
-            expectedList.Add("abcdefghi");
-            expectedList.Add("abcghidef");
-            expectedList.Add("defabcghi");
-            expectedList.Add("defghiabc");
-            expectedList.Add("ghiabcdef");
-            expectedList.Add("ghidefabc");
+            List<String> sList = new List<string>() { "abc", "def", "ghi" };
+            expected = "abcdefghi";
             result = CommonString.FindCommonString(sList);
-            Assert.IsNotNull(expectedList.Find(expect => expect == result));
+            Assert.AreEqual(expected,result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException), "String List shouldn't be null or empty")]
+        public void ShouldThrowException_WhenStringListIsNull()
+        {
+            List<String> sList = null;
+            result = CommonString.FindCommonString(sList);
+            sList = new List<string>();
+            result = CommonString.FindCommonString(sList);
         }
     }
 
