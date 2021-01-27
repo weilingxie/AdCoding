@@ -5,7 +5,13 @@ using System.Text;
 namespace AdCodingApp
 {
     public static class CommonString
-    {                        
+    {
+        /// <summary>
+        /// Method that finds the maximum overlapped string of two strings
+        /// </summary>
+        /// <param name="s1">The first string</param>
+        /// <param name="s2">The second string</param>
+        /// <returns>Maximum overlapped string of s1 and s2</returns>
         public static String FindLongestSubstring(String s1, String s2)
         {
             if(s1 == null || s2 == null)
@@ -27,8 +33,7 @@ namespace AdCodingApp
             // To store length of the longest common substring
             int maxOverlapLength = 0;
 
-            int s1Position = 0;
-            int s2Position = 0;
+            int s1Position = 0; //The start position of the overlapped substring in s1
 
             // Following steps build LCSuff[m+1][n+1] in bottom up fashion
             for (int i = 0; i <= m; i++)
@@ -45,7 +50,6 @@ namespace AdCodingApp
                         {
                             maxOverlapLength = LCStuff[i, j];
                             s1Position = i;
-                            s2Position = j;
                         }
                         
                     }
@@ -66,6 +70,13 @@ namespace AdCodingApp
                       
         }
 
+        /// <summary>
+        /// Method that concatenates 2 strings by providing overlapped string between them
+        /// </summary>
+        /// <param name="s1">The first string</param>
+        /// <param name="s2">The second string</param>
+        /// <param name="overlap">The overlap substring bewteen s1 and s2</param>
+        /// <returns>The concatenated string of s1 and s2</returns>
         public static string ConcatTwoString(string s1, string s2, string overlap)
         {
             if (s1 == null || s2 == null)
@@ -145,6 +156,11 @@ namespace AdCodingApp
             return concatString;
         }
 
+        /// <summary>
+        /// The wrapper method, accept a string list and return the common string
+        /// </summary>
+        /// <param name="sList">A list of strings to be compared</param>
+        /// <returns>The common string of strings in sList</returns>
         public static string FindCommonString(List<string> sList)
         {
 
