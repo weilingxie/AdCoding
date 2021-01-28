@@ -7,6 +7,48 @@ namespace AdCodingApp
     public static class CommonString
     {
         /// <summary>
+        /// The wrapper method, accept a string list and return the common string
+        /// </summary>
+        /// <param name="sList">A list of strings to be compared</param>
+        /// <returns>The common string of strings in sList</returns>
+        public static string FindCommonString(List<string> sList)
+        {
+
+            if (sList == null || sList.Count == 0) throw new ArgumentNullException("String List shouldn't be null or empty");
+
+            String s1 = null; //Originated string1
+            String s2 = null; //Originated string2
+            String overlap = null;
+            int maxLength = -1;
+
+            while (sList.Count > 1)
+            {
+                for (int i = 0; i < sList.Count - 1; i++)
+                {
+                    for (int j = i + 1; j < sList.Count; j++)
+                    {
+                        overlap = FindLongestSubstring(sList[i], sList[j]);
+                        if ((overlap == null ? 0 : overlap.Length) >= maxLength)
+                        {
+                            maxLength = overlap == null ? 0 : overlap.Length;
+                            s1 = sList[i];
+                            s2 = sList[j];
+                        }
+                    }
+                }
+                String concatString = ConcatTwoString(s1, s2, overlap);
+
+                //Add concatenated string and remove 2 originated strings
+                sList.Add(concatString);
+                sList.Remove(s1);
+                sList.Remove(s2);
+            }
+
+            String finalComonString = sList[0];
+            return finalComonString;
+        }
+
+        /// <summary>
         /// Method that finds the maximum overlapped string of two strings
         /// </summary>
         /// <param name="s1">The first string</param>
@@ -14,10 +56,7 @@ namespace AdCodingApp
         /// <returns>Maximum overlapped string of s1 and s2</returns>
         public static String FindLongestSubstring(String s1, String s2)
         {
-            if(s1 == null || s2 == null)
-            {
-                throw new ArgumentNullException("String shouldn't be null");
-            }
+            if(s1 == null || s2 == null) throw new ArgumentNullException("String shouldn't be null");            
 
             String longestOverlapString = null;
             int m = s1.Length;
@@ -79,10 +118,7 @@ namespace AdCodingApp
         /// <returns>The concatenated string of s1 and s2</returns>
         public static string ConcatTwoString(string s1, string s2, string overlap)
         {
-            if (s1 == null || s2 == null)
-            {
-                throw new ArgumentNullException("String shouldn't be null");
-            }
+            if (s1 == null || s2 == null) throw new ArgumentNullException("String shouldn't be null");
 
             // One string contains another
             if (s1 == overlap) {
@@ -104,100 +140,16 @@ namespace AdCodingApp
             int s2StartPosition = s2.IndexOf(overlap);  //Start position of the overlap substring in s2
 
             // Two strings both have prefix, choose the shorter one, if they are the same length, choose s1
-            if (s1StartPosition > 0  && s2StartPosition > 0 )
-            {
-                if(s1StartPosition <= s2StartPosition)
-                {
-                    prefix = s1.Substring(0, s1StartPosition);
-                }
-                else
-                {
-                    prefix = s2.Substring(0, s2StartPosition);
-                }
-            }
-            else  // One of 2 strings has prefix
-            {
-                if (s1StartPosition == 0)
-                {
-                    prefix = s2.Substring(0, s2StartPosition);
-                }
-                else
-                {
-                    prefix = s1.Substring(0, s1StartPosition);
-                }
-            }
+            if (s1StartPosition > 0  && s2StartPosition > 0 ) prefix = s1StartPosition <= s2StartPosition ? s1.Substring(0, s1StartPosition) : s2.Substring(0, s2StartPosition);                
+            else prefix = s1StartPosition == 0? s2.Substring(0, s2StartPosition): s1.Substring(0, s1StartPosition);
 
             // Two strings both have suffix, choose the shorter one, if they are the same length, choose s1
-            if (s1StartPosition < (s1.Length - overlap.Length) && s2StartPosition < (s2.Length - overlap.Length))
-            {
-                if((s1.Length-s1StartPosition) <= (s2.Length - s2StartPosition))
-                {
-                    suffix = s1.Substring((s1StartPosition + overlap.Length));
-                }
-                else
-                {
-                    suffix = s2.Substring((s2StartPosition + overlap.Length));
-                }
-            }
-            else  // One of 2 strings has suffix
-            {
-                if ((s1StartPosition + overlap.Length) == s1.Length)
-                {
-                    suffix = s2.Substring((s2StartPosition + overlap.Length));
-                }
-                else
-                {
-                    suffix = s1.Substring((s1StartPosition + overlap.Length));
-                }
-            }
+            if (s1StartPosition < (s1.Length - overlap.Length) && s2StartPosition < (s2.Length - overlap.Length)) suffix = (s1.Length - s1StartPosition) <= (s2.Length - s2StartPosition)? s1.Substring((s1StartPosition + overlap.Length)): s2.Substring((s2StartPosition + overlap.Length));
+            else suffix = (s1StartPosition + overlap.Length) == s1.Length ? s2.Substring((s2StartPosition + overlap.Length)) : s1.Substring((s1StartPosition + overlap.Length));                
 
             // Assemble the string
             String concatString = prefix + overlap + suffix;
             return concatString;
-        }
-
-        /// <summary>
-        /// The wrapper method, accept a string list and return the common string
-        /// </summary>
-        /// <param name="sList">A list of strings to be compared</param>
-        /// <returns>The common string of strings in sList</returns>
-        public static string FindCommonString(List<string> sList)
-        {
-
-            if (sList == null || sList.Count == 0)
-            {
-                throw new ArgumentNullException("String List shouldn't be null or empty");
-            }
-
-            String s1 = null; //Originated string1
-            String s2 = null; //Originated string2
-            String overlap = null;
-            int maxLength = -1;
-
-            while (sList.Count > 1)
-            {
-                for(int i=0; i<sList.Count-1; i++) {
-                    for(int j=i+1; j<sList.Count; j++)
-                    {
-                        overlap = FindLongestSubstring(sList[i], sList[j]);
-                        if ((overlap==null?0:overlap.Length) >= maxLength)
-                        {
-                            maxLength = overlap == null ? 0 : overlap.Length;
-                            s1 = sList[i];
-                            s2 = sList[j];
-                        }                       
-                    }                    
-                }
-                String concatString = ConcatTwoString(s1, s2, overlap);
-
-                //Add concatenated string and remove 2 originated strings
-                sList.Add(concatString);
-                sList.Remove(s1);
-                sList.Remove(s2);
-            }
-
-            String finalComonString = sList[0];
-            return finalComonString;
-        }
+        }        
     }
 }
