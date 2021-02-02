@@ -187,6 +187,19 @@ namespace AdCodingUnitTest
             sList = new List<string>();
             result = CommonString.FindCommonString(sList);
         }
+
+        //New Test cases
+        [TestMethod]
+        public void BasicCaseLongOnLeft()
+        {
+
+            List<string> fragments = new List<string> { "1234567", "56789" };
+
+            var result = CommonString.FindCommonString(fragments);
+
+            Assert.IsTrue(result == "123456789");
+
+        }
     }
 
 }
