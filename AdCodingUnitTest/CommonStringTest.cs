@@ -213,6 +213,19 @@ namespace AdCodingUnitTest
             Assert.IsTrue(result == "123456789");
 
         }
+
+        [TestMethod]
+
+        public void BasicCaseLongOnRight()
+        {
+
+            List<string> fragments = new List<string> { "1234", "23456789" };
+
+            var result = CommonString.FindCommonString(fragments);
+
+            Assert.IsTrue(result == "123456789");
+
+        }
     }
 
 }
