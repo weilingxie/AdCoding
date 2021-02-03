@@ -188,6 +188,34 @@ namespace AdCodingUnitTest
             result = CommonString.FindCommonString(sList);
         }
 
+
+        /*
+             Test Method GetPrefixAndSuffix
+         */
+
+        [TestMethod]
+        public void ShouldReturnOneItem_WhenStringsHasOneOverlap()
+        {
+            s1 = "cdefgh";
+            overlap = "e";            
+            var resultList = CommonString.GetPrefixAndSuffix(s1, overlap);
+            Assert.AreEqual(2, resultList[0]["prefix"]);
+            Assert.AreEqual(3, resultList[0]["suffix"]);
+        }
+
+        [TestMethod]
+        public void ShouldReturnTwoItems_WhenStringsHasTwoOverlap()
+        {
+            s1 = "cdewooe";
+            overlap = "e";
+            var resultList = CommonString.GetPrefixAndSuffix(s1, overlap);
+            Assert.AreEqual(2, resultList[0]["prefix"]);
+            Assert.AreEqual(4, resultList[0]["suffix"]);
+            Assert.AreEqual(6, resultList[1]["prefix"]);
+            Assert.AreEqual(0, resultList[1]["suffix"]);
+        }
+
+
         //New Test cases
         [TestMethod]
         public void BasicCaseLongOnLeft()
