@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AdCodingApp;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AdCodingUnitTest
 {
@@ -170,12 +171,13 @@ namespace AdCodingUnitTest
         }
 
         [TestMethod]
-        public void ShouldReturnCommonStringInParamOder_WhenStringListHasNoOverlap()
+        public void ShouldReturnAnyCommonString_WhenStringListHasNoOverlap()
         {
-            List<String> sList = new List<string>() { "abc", "def", "ghi" };
-            expected = "abcdefghi";
+            List<String> sList = new List<string>() { "abc", "def", "ghi" };            
             result = CommonString.FindCommonString(sList);
-            Assert.AreEqual(expected,result);
+            Assert.IsTrue(result.Contains("abc"));
+            Assert.IsTrue(result.Contains("def"));
+            Assert.IsTrue(result.Contains("ghi"));
         }
 
         [TestMethod]
@@ -280,6 +282,33 @@ namespace AdCodingUnitTest
             Assert.IsTrue(result == "abcdewooefghi");
 
         }
+
+        //[TestMethod]
+
+        //public void TestProblemExample()
+        //{
+
+        //    List<string> fragments = new List<string> { "all is well", "ell that en", "hat end", "t ends well" };
+
+        //    var result = CommonString.FindCommonString(fragments);
+
+        //    Assert.IsTrue(result == "all is well that ends well");
+
+        //}
+
+        [TestMethod]
+
+        public void TestGitHubSample1()
+        {
+
+            var fragments = "O draconia;conian devil! Oh la;h lame sa;saint!".Split(';').ToList();
+
+            var result = CommonString.FindCommonString(fragments);
+
+            Assert.IsTrue(result == "O draconian devil! Oh lame saint!");
+
+        }
+
     }
 
 }

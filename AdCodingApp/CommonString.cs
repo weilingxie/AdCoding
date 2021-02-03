@@ -21,31 +21,52 @@ namespace AdCodingApp
                 string s1 = null; //Compare string1
                 string s2 = null; //Compare string2
                 string overlap = null;
+                string result = null;
                 int maxLength = -1;
                 for (int i = 0; i < sList.Count - 1; i++)
                 {
                     for (int j = i + 1; j < sList.Count; j++)
                     {
-                        overlap = FindLongestSubstring(sList[i], sList[j]);
-                        var overlapLength = overlap == null ? 0 : overlap.Length;
-                        if (overlapLength >= maxLength)
+                        var c1 = sList[i];
+                        var c2 = sList[j];
+                        result = FindLongestSubstring(c1, c2);
+
+                        //Console.WriteLine($"{sList[i]} && {sList[j]}  = {result} ");
+                        var resultLength = result == null ? 0 : result.Length;
+
+                        if (resultLength > maxLength)
                         {
-                            maxLength = overlapLength;
+                            maxLength = resultLength;
                             s1 = sList[i];
                             s2 = sList[j];
+                            overlap = result;
+                        }else if (resultLength == maxLength)
+                        {
+                            string concatString1 = ConcatTwoString(s1, s2, overlap);
+                            string concatString2 = ConcatTwoString(c1, c2, result);
+                            //Console.WriteLine($"S {s1}  &&     {s2}     =   {concatString1}");
+                            //Console.WriteLine($"C {c1}  &&     {c2}     =   {concatString2}");
+                            if (concatString2.Length > concatString1.Length)
+                            {
+                                maxLength = resultLength;
+                                s1 = sList[i];
+                                s2 = sList[j];
+                                overlap = result;
+                            }
                         }
                     }
                 }
                 string concatString = ConcatTwoString(s1, s2, overlap);
-
+                Console.WriteLine($"{s1} && {s2}  = {concatString} ");                
                 //Add concatenated string and remove 2 originated strings
                 sList.Add(concatString);
                 sList.Remove(s1);
                 sList.Remove(s2);
+                Console.WriteLine(String.Join("\n", sList));
+                Console.WriteLine("----------------------------");
             }
-
-            String finalComonString = sList[0];
-            return finalComonString;
+            
+            return sList[0];
         }
 
         /// <summary>
