@@ -121,24 +121,24 @@ namespace AdCodingUnitTest
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
-        public void ShouldConcatByFirstOverlap_WhenOneStringsHasTwoOverlap()
-        {
-            s1 = "abcdgcd";
-            s2 = "cdef";
-            overlap = "cd";
-            expected = "abcdef";
-            result = CommonString.ConcatTwoString(s1, s2, overlap);
-            Assert.AreEqual(expected, result);
-        }
+        //[TestMethod]
+        //public void ShouldConcatByFirstOverlap_WhenOneStringsHasTwoOverlap()
+        //{
+        //    s1 = "abcdgcd";
+        //    s2 = "cdef";
+        //    overlap = "cd";
+        //    expected = "abcdef";
+        //    result = CommonString.ConcatTwoString(s1, s2, overlap);
+        //    Assert.AreEqual(expected, result);
+        //}
 
         [TestMethod]
-        public void ShouldReturnShortString_WhenTwoStringsHasPrefixSuffix()
+        public void ShouldReturnLongString_WhenTwoStringsHasPrefixSuffix()
         {
             s1 = "abcdefg";
             s2 = "xcdy";
             overlap = "cd";
-            expected = "xcdy";
+            expected = "abcdefg";
             result = CommonString.ConcatTwoString(s1, s2, overlap);
             Assert.AreEqual(expected, result);
         }
@@ -237,6 +237,19 @@ namespace AdCodingUnitTest
             var result = CommonString.FindCommonString(fragments);
 
             Assert.IsTrue(result == "123456789");
+
+        }
+
+        [TestMethod]
+
+        public void UseBestStringMatchNotFirstMatch()
+        {
+
+            List<string> fragments = new List<string> { "abcde", "efghi", "cdewooe" };
+
+            var result = CommonString.FindCommonString(fragments);
+
+            Assert.IsTrue(result == "abcdewooefghi");
 
         }
     }

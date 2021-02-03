@@ -11,13 +11,11 @@ namespace AdCodingApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please provide fullpath + filename, and press enter");
-            Console.WriteLine(@"For example: D:\test\1.txt");
-
             string line;
             while ((line = Console.ReadLine()) != null)
             {
-                try { 
+                try
+                {
                     if (!File.Exists(line))
                     {
                         Console.WriteLine("File does not exist.");
@@ -31,11 +29,12 @@ namespace AdCodingApp
                         Console.WriteLine("-----------------------------------------------");
                         Console.WriteLine($"Common String is: {CommonString.FindCommonString(sList)}");
                     }
-                } catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
                 }
-            }               
+            }
         }
     }
 }
