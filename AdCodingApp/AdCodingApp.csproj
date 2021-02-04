@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonString2.cs" />
     <Compile Include="CommonString.cs" />
     <Compile Include="MaxString.cs" />
+    <Compile Include="OverlapString.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
