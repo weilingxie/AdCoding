@@ -79,6 +79,12 @@ namespace AdCodingApp
             return sList[0];
         }
 
+        /// <summary>
+        /// Method that finds the maximum overlapped string of two strings
+        /// </summary>
+        /// <param name="s1">The first string</param>
+        /// <param name="s2">The second string</param>
+        /// <returns>Object OverlapString that includes maximum overlapped string and concatenated string of s1 and s2 </returns>
         public static OverlapString FindLongestSubstring(String s1, String s2)
         {            
             if (s1 == null || s2 == null) throw new ArgumentNullException("String shouldn't be null");
@@ -106,7 +112,7 @@ namespace AdCodingApp
             string overlap2 = null;
             string concat1 = null;
             string concat2 = null;
-
+            // match from beginning of s1 and end of s2
             for (int i = s1Length; i > 0; i--)
             {
                 for (int j = 0; j < s2Length; j++)
@@ -120,8 +126,8 @@ namespace AdCodingApp
                     if (overlap1 != null) break;
                 }
                 if (overlap1 != null) break;
-            }            
-
+            }
+            // match from beginning of s2 and end of s1
             for (int i = s2Length; i > 0; i--)
             {
                 for (int j = 0; j < s1Length; j++)
@@ -141,6 +147,7 @@ namespace AdCodingApp
             int length1 = overlap1 == null ? 0 : overlap1.Length;
             int length2 = overlap2 == null ? 0 : overlap2.Length;
 
+            //If there is no overlpa, directly concatenate them
             if(length1 == 0 && length2 == 0)
             {
                 overlap.Overlap = null;
