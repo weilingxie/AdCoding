@@ -13,9 +13,7 @@ namespace AdCodingApp
         {
 
             string s1 = "abcd";
-            string s2 = "bc";
-            string expectedOverlap = "bc";
-            string expectedConcat = "abcd";
+            string s2 = null;
             var result = CommonString.FindLongestSubstring(s1, s2);
             Console.WriteLine($"{result.Overlap}    {result.Concat}");
             Console.ReadLine();

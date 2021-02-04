@@ -83,16 +83,16 @@ namespace AdCodingUnitTest
             Assert.AreEqual(expectedConcat, result.Concat);
         }
 
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentNullException), "String shouldn't be null")]
-        //public void ShouldThrowException_WhenOneOrTwoStringsAreNull()
-        //{
-        //    s1 = "abcd";
-        //    s2 = null;
-        //    result = CommonString.FindLongestSubstring(s1, s2);            
-        //    result = CommonString.FindLongestSubstring(s2, s1);
-        //    result = CommonString.FindLongestSubstring(s2, s2);
-        //}
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ShouldThrowException_WhenOneOrTwoStringsAreNull()
+        {
+            s1 = "abcd";
+            s2 = null;
+            var result = CommonString.FindLongestSubstring(s1, s2);
+            result = CommonString.FindLongestSubstring(s2, s1);
+            result = CommonString.FindLongestSubstring(s2, s2);
+        }
 
         ///*
         //     Test Method ConcatTwoString

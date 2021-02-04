@@ -80,12 +80,12 @@ namespace AdCodingApp
         }
 
         public static OverlapString FindLongestSubstring(String s1, String s2)
-        {
+        {            
+            if (s1 == null || s2 == null) throw new ArgumentNullException("String shouldn't be null");
+
             int s1Length = s1.Length;
             int s2Length = s2.Length;
             var overlap = new OverlapString();
-
-            if (s1 == null || s2 == null) throw new ArgumentNullException("String shouldn't be null");
 
             // One string contain another
             if (s1.Contains(s2))
