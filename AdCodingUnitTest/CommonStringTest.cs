@@ -11,8 +11,8 @@ namespace AdCodingUnitTest
     {
         private String s1;
         private String s2;        
-        private String overlap;
-        private String result;
+        //private String overlap;
+        //private String result;
         private String expected;
 
 
@@ -107,15 +107,15 @@ namespace AdCodingUnitTest
             Assert.AreEqual(expected, result);            
         }
 
-        //[TestMethod]
-        //public void ShouldReturnAnyCommonString_WhenStringListHasNoOverlap()
-        //{
-        //    List<String> sList = new List<string>() { "abc", "def", "ghi" };            
-        //    result = CommonString.FindCommonString(sList);
-        //    Assert.IsTrue(result.Contains("abc"));
-        //    Assert.IsTrue(result.Contains("def"));
-        //    Assert.IsTrue(result.Contains("ghi"));
-        //}
+        [TestMethod]
+        public void ShouldReturnAnyCommonString_WhenStringListHasNoOverlap()
+        {
+            List<String> sList = new List<string>() { "abc", "def", "ghi" };            
+            var result = CommonString.FindCommonString(sList);
+            Assert.IsTrue(result.Contains("abc"));
+            Assert.IsTrue(result.Contains("def"));
+            Assert.IsTrue(result.Contains("ghi"));
+        }
 
         //[TestMethod]
         //[ExpectedException(typeof(ArgumentNullException), "String List shouldn't be null or empty")]
