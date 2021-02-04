@@ -32,15 +32,16 @@ namespace AdCodingUnitTest
             Assert.AreEqual(expectedConcat, result.Concat);
         }
 
-        //[TestMethod]
-        //public void ShouldReturnNull_WhenTwoStringsHasNoOverlap()
-        //{
-        //    s1 = "abcd";
-        //    s2 = "efgh";
-        //    expected = null;
-        //    result = CommonString.FindLongestSubstring(s1, s2);
-        //    Assert.IsNull(result);
-        //}
+        [TestMethod]
+        public void ShouldReturnNullOverlapAndDirectConcat_WhenTwoStringsHasNoOverlap()
+        {
+            s1 = "abcd";
+            s2 = "efgh";            
+            string expectedConcat = "abcdefgh";
+            var result = CommonString.FindLongestSubstring(s1, s2);
+            Assert.IsNull(result.Overlap);
+            Assert.AreEqual(expectedConcat, result.Concat);
+        }
 
         //[TestMethod]
         //public void ShouldReturnEitherString_WhenTwoStringsHasTwoOverlap()
