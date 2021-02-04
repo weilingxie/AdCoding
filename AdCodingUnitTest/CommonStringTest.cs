@@ -117,15 +117,15 @@ namespace AdCodingUnitTest
             Assert.IsTrue(result.Contains("ghi"));
         }
 
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentNullException), "String List shouldn't be null or empty")]
-        //public void ShouldThrowException_WhenStringListIsNull()
-        //{
-        //    List<String> sList = null;
-        //    result = CommonString.FindCommonString(sList);
-        //    sList = new List<string>();
-        //    result = CommonString.FindCommonString(sList);
-        //}
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ShouldThrowException_WhenStringListIsNull()
+        {
+            List<String> sList = null;
+            CommonString.FindCommonString(sList);
+            sList = new List<string>();
+            CommonString.FindCommonString(sList);
+        }
 
 
         //New Test cases
