@@ -89,97 +89,23 @@ namespace AdCodingUnitTest
         {
             s1 = "abcd";
             s2 = null;
-            var result = CommonString.FindLongestSubstring(s1, s2);
-            result = CommonString.FindLongestSubstring(s2, s1);
-            result = CommonString.FindLongestSubstring(s2, s2);
+            CommonString.FindLongestSubstring(s1, s2);
+            CommonString.FindLongestSubstring(s2, s1);
+            CommonString.FindLongestSubstring(s2, s2);
         }
 
-        ///*
-        //     Test Method ConcatTwoString
-        // */
+        /*
+             Test Method FindCommonString
+         */
 
-        //[TestMethod]
-        //public void ShouldReturnConcatstring_WhenTwoStringsHasOverlap()
-        //{
-        //    s1 = "abcd";
-        //    s2 = "cdef";
-        //    overlap = "cd";
-        //    expected = "abcdef";
-        //    result = CommonString.ConcatTwoString(s1, s2, overlap);
-        //    Assert.AreEqual(expected, result);
-        //}
-
-        //[TestMethod]
-        //public void ShouldReturnConcatString_WhenTwoStringsHasNoOverlap()
-        //{
-        //    s1 = "abcd";
-        //    s2 = "efgh";
-        //    overlap = null;
-        //    List<String> expectedList = new List<string>() { "abcdefgh", "efghabcd" };
-        //    result = CommonString.ConcatTwoString(s1, s2, overlap);
-        //    Assert.IsNotNull(expectedList.Find(expect => expect == result));
-        //}
-
-        //[TestMethod]
-        //public void ShouldReturnParentString_WhenOneStringsContainsAnother()
-        //{
-        //    s1 = "abcd";
-        //    s2 = "bc";
-        //    overlap = s2;
-        //    expected = "abcd";
-        //    result = CommonString.ConcatTwoString(s1, s2, overlap);
-        //    Assert.AreEqual(expected, result);
-        //    result = CommonString.ConcatTwoString(s2, s1, overlap);
-        //    Assert.AreEqual(expected, result);
-        //}
-
-        ////[TestMethod]
-        ////public void ShouldConcatByFirstOverlap_WhenOneStringsHasTwoOverlap()
-        ////{
-        ////    s1 = "abcdgcd";
-        ////    s2 = "cdef";
-        ////    overlap = "cd";
-        ////    expected = "abcdef";
-        ////    result = CommonString.ConcatTwoString(s1, s2, overlap);
-        ////    Assert.AreEqual(expected, result);
-        ////}
-
-        //[TestMethod]
-        //public void ShouldReturnLongString_WhenTwoStringsHasPrefixSuffix()
-        //{
-        //    s1 = "abcdefg";
-        //    s2 = "xcdy";
-        //    overlap = "cd";
-        //    expected = "abcdefg";
-        //    result = CommonString.ConcatTwoString(s1, s2, overlap);
-        //    Assert.AreEqual(expected, result);
-        //}
-
-        //[TestMethod]
-        //[ExpectedException(typeof(ArgumentNullException), "String shouldn't be null")]
-        //public void ShouldThrowException_WhenOneOrTwoOrThreeStringsAreNull()
-        //{
-        //    s1 = "abcd";
-        //    s2 = null;
-        //    overlap = null;
-        //    result = CommonString.ConcatTwoString(s1, s2, overlap);
-        //    result = CommonString.ConcatTwoString(s2, s1, overlap);
-        //    result = CommonString.ConcatTwoString(s2, s2, overlap);
-        //}
-
-
-        ///*
-        //     Test Method FindCommonString
-        // */
-
-        //[TestMethod]
-        //public void ShouldReturnCommonstring_WhenStringListHasOverlap()
-        //{
-        //    List<String> sList = new List<string> { "abc", "bcd", "cde"};
-        //    expected = "abcde";
-        //    result = CommonString.FindCommonString(sList);
-        //    Assert.AreEqual(expected, result);
-        //}
+        [TestMethod]
+        public void ShouldReturnCommonstring_WhenStringListHasOverlap()
+        {
+            List<String> sList = new List<string> { "abc", "bcd", "cde" };
+            expected = "abcde";
+            var result = CommonString.FindCommonString(sList);
+            Assert.AreEqual(expected, result);            
+        }
 
         //[TestMethod]
         //public void ShouldReturnAnyCommonString_WhenStringListHasNoOverlap()
