@@ -68,17 +68,20 @@ namespace AdCodingUnitTest
             Assert.AreEqual(expectedConcat, result.Concat);
         }
 
-        //[TestMethod]
-        //public void ShouldReturnChildString_WhenOneStringsContainsAnother()
-        //{
-        //    s1 = "abcd";
-        //    s2 = "bc";
-        //    expected = "bc";
-        //    result = CommonString.FindLongestSubstring(s1, s2);
-        //    Assert.AreEqual(expected, result);
-        //    result = CommonString.FindLongestSubstring(s2, s1);
-        //    Assert.AreEqual(expected, result);
-        //}
+        [TestMethod]
+        public void ShouldReturnChildString_WhenOneStringsContainsAnother()
+        {
+            s1 = "abcd";
+            s2 = "bc";
+            string expectedOverlap = "bc";
+            string expectedConcat = "abcd";
+            var result = CommonString.FindLongestSubstring(s1, s2);
+            Assert.AreEqual(expectedOverlap, result.Overlap);
+            Assert.AreEqual(expectedConcat, result.Concat);
+            result = CommonString.FindLongestSubstring(s2, s1);
+            Assert.AreEqual(expectedOverlap, result.Overlap);
+            Assert.AreEqual(expectedConcat, result.Concat);
+        }
 
         //[TestMethod]
         //[ExpectedException(typeof(ArgumentNullException), "String shouldn't be null")]

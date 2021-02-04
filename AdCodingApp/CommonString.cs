@@ -90,14 +90,14 @@ namespace AdCodingApp
             // One string contain another
             if (s1.Contains(s2))
             {
-                overlap.Overlap = s1;
+                overlap.Overlap = s2;
                 overlap.Concat = s1;
                 return overlap; 
             }
 
             if (s2.Contains(s1))
             {
-                overlap.Overlap = s2;
+                overlap.Overlap = s1;
                 overlap.Concat = s2;
                 return overlap;
             }
