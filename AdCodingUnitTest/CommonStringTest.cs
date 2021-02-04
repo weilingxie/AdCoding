@@ -13,22 +13,24 @@ namespace AdCodingUnitTest
         private String s2;        
         private String overlap;
         private String result;
-        private String expected;        
+        private String expected;
 
 
         /*
              Test Method FindLongestSubstring
          */
 
-        //[TestMethod]
-        //public void ShouldReturnSubstring_WhenTwoStringsHasOverlap()
-        //{
-        //    s1 = "abcd";
-        //    s2 = "cdef";
-        //    expected = "cd";
-        //    result = CommonString.FindLongestSubstring(s1, s2);
-        //    Assert.AreEqual(expected, result);
-        //}
+        [TestMethod]
+        public void ShouldReturnSubstring_WhenTwoStringsHasOverlap()
+        {
+            s1 = "abcd";
+            s2 = "cdef";
+            string expectedOverlap = "cd";
+            string expectedConcat = "abcdef";
+            var result = CommonString.FindLongestSubstring(s1, s2);
+            Assert.AreEqual(expectedOverlap, result.Overlap);
+            Assert.AreEqual(expectedConcat, result.Concat);
+        }
 
         //[TestMethod]
         //public void ShouldReturnNull_WhenTwoStringsHasNoOverlap()

@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonString2.cs" />
+    <Compile Include="CommonStringObsoleted.cs" />
     <Compile Include="CommonString.cs" />
     <Compile Include="MaxString.cs" />
     <Compile Include="OverlapString.cs" />

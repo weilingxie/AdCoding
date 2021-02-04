@@ -35,7 +35,7 @@ namespace AdCodingApp
                     {
                         var c1 = sList[i];
                         var c2 = sList[j];
-                        var result = FindLongestCommonString(c1, c2);
+                        var result = FindLongestSubstring(c1, c2);
                         if (rd == round && round > 0) Console.WriteLine($"Length:{(result.Overlap==null?"N/A":result.Overlap)} || ({sList[i]}) && ({sList[j]}) = ({(result.Concat == null ? "N/A" : result.Concat)})");
 
                         var resultLength = (result == null || result.Overlap == null) ? 0 : result.Overlap.Length;
@@ -79,7 +79,7 @@ namespace AdCodingApp
             return sList[0];
         }
 
-        public static OverlapString FindLongestCommonString(String s1, String s2)
+        public static OverlapString FindLongestSubstring(String s1, String s2)
         {
             int s1Length = s1.Length;
             int s2Length = s2.Length;
