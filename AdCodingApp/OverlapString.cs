@@ -10,5 +10,11 @@ namespace AdCodingApp
     {
         public String Overlap {get; set; }
         public String Concat { get; set; }
+
+        public OverlapString()
+        {
+            Overlap = null;
+            Concat = null;
+        }
     }
 }
